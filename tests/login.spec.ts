@@ -10,3 +10,14 @@ test('user can log in', async ({ page }) => {
   await expect(page).toHaveURL(/inventory/);
   await expect(page.getByText('Products')).toBeVisible();
 });
+test('shows error for wrong password', async ({page}) => {
+    await page.goto('https://www.saucedemo.com/');
+
+    await page.getByPlaceholder('Username').fill('standard_user');
+    await page.getByPlaceholder('password').fill('wrong_password');
+    await page.getByRole('button', {name: 'Login'}).click();
+
+    await expect(page).toHaveURL('https://www.saucedemo.com/');
+    await expect(page.getByText('Epic sadface')).toBeVisible();
+
+});

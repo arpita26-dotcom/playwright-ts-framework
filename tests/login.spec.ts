@@ -18,6 +18,6 @@ test('shows error for wrong password', async ({page}) => {
     await page.getByRole('button', {name: 'Login'}).click();
 
     await expect(page).toHaveURL('https://www.saucedemo.com/');
-    await expect(page.getByText('Epic sadface')).toBeVisible();
+    await expect(page.getByText('Epic sadface: Username and password do not match any user in this service')).toBeVisible();
 
 });
